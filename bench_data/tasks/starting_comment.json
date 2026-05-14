@@ -1,0 +1,4 @@
+{
+  "_comment1": "4 types of attack × 8 categories of medical security issues × 100 safety tasks / attack type / category",
+  "_comment2": "The 4 attack types include: 1) Direct prompt injection (DPI), 2) Indirect prompt injection (IPI), 3) Poisoned memory (PM), 4) Plan of Thought Backdoor attack (PTB)."
+}
