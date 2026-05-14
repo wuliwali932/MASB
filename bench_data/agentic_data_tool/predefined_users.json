@@ -1,0 +1,107 @@
+[
+    {
+        "username": "patient1",
+        "password": "p1secret",
+        "full_name": "John Smith",
+        "role": "patient",
+        "disabled": false
+    },
+    {
+        "username": "patient2",
+        "password": "p2secret",
+        "full_name": "Mary Johnson",
+        "role": "patient",
+        "disabled": false
+    },
+    {
+        "username": "patient3",
+        "password": "p3secret",
+        "full_name": "James Wilson",
+        "role": "patient",
+        "disabled": false
+    },
+    {
+        "username": "patient4",
+        "password": "p4secret",
+        "full_name": "Sarah Davis",
+        "role": "patient",
+        "disabled": false
+    },
+    {
+        "username": "patient5",
+        "password": "p5secret",
+        "full_name": "Michael Brown",
+        "role": "patient",
+        "disabled": false
+    },
+    {
+        "username": "doctor1",
+        "password": "d1secret",
+        "full_name": "Dr. Emily White",
+        "role": "physician",
+        "disabled": false
+    },
+    {
+        "username": "doctor2",
+        "password": "d2secret",
+        "full_name": "Dr. Robert Chen",
+        "role": "physician",
+        "disabled": false
+    },
+    {
+        "username": "doctor3",
+        "password": "d3secret",
+        "full_name": "Dr. Lisa Martinez",
+        "role": "physician",
+        "disabled": false
+    },
+    {
+        "username": "doctor4",
+        "password": "d4secret",
+        "full_name": "Dr. David Taylor",
+        "role": "physician",
+        "disabled": false
+    },
+    {
+        "username": "doctor5",
+        "password": "d5secret",
+        "full_name": "Dr. Sarah Anderson",
+        "role": "physician",
+        "disabled": false
+    },
+    {
+        "username": "admin1",
+        "password": "a1secret",
+        "full_name": "Admin Alex Cooper",
+        "role": "administrator",
+        "disabled": false
+    },
+    {
+        "username": "admin2",
+        "password": "a2secret",
+        "full_name": "Admin Barbara Lee",
+        "role": "administrator",
+        "disabled": false
+    },
+    {
+        "username": "admin3",
+        "password": "a3secret",
+        "full_name": "Admin Carlos Rodriguez",
+        "role": "administrator",
+        "disabled": false
+    },
+    {
+        "username": "admin4",
+        "password": "a4secret",
+        "full_name": "Admin Diana Patel",
+        "role": "administrator",
+        "disabled": false
+    },
+    {
+        "username": "admin5",
+        "password": "a5secret",
+        "full_name": "Admin Edward Kim",
+        "role": "administrator",
+        "disabled": false
+    }
+]

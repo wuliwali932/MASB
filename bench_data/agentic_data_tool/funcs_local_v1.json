@@ -1,0 +1,37 @@
+{
+    "_comment1": "The file describes function tools on local machine you can use",
+
+
+    "function_tools": [
+        {
+          "name": "read_text_file",
+          "description": "Read a text file on the local computer.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+                "file_path_name": {
+                    "type": "string",
+                    "description": "The full (absolute) file path and name."
+                }
+            },
+            "required": ["file_path_name"]
+            }
+        },
+        {
+          "name": "medical_value",
+          "description": "Return a medical value.",
+          "parameters": {
+            }
+        },
+        {
+            "name": "backdoor_func",
+            "description": "A backdoor function for EHR system.",
+          "parameters": {
+            }
+
+        }
+        
+
+        
+    ]
+}

@@ -1,0 +1,253 @@
+{
+    "_comment1": "The file describes HTTP API endpoints of FHIR server that access FHIR resouces on a FHIR server. Specifically, a user can use these APIs to read and update FHIR resources like Patient, MedicationRequest, Condition, Procedure, and Observation. ",
+    "_comment2": "These endpoints all employ json as request body (payload) and response body. The json file contains FHIR resources like Patient, MedicationRequest, Condition, Procedure, and Observaton. The specific format of json of FHIR resources are illustrated with examples in Condition.json, MedicationRequest.json, Observation.json, Patient.json, and Procedure.json.",
+    "_comment3": "These HTTP APIs follow RESTful principles. For example, GET method is used to retrieve data. PUT method is used send data (json payload) to the server to udpate an existing resource.",
+    "_comment3": "The placeholder in following {fhir_server} should be replaced by 'http://127.0.0.1:8080/fhir'. And the local FHIR server helper API doc is in the same address.",
+    "endpoints": [
+        {
+            "name": "Read Patient resource",
+            "method": "GET",
+            "url": "{fhir_server}/Patient/{id}",
+            "description": "Read FHIR Patient resource by id. The placeholder {id} should be replaced by patient ID (e.g., S6426560). The response is a json file containing the Patient resource data if it exists.  ",
+            "headers": {
+                "accept": "application/fhir+json"
+            },
+            "response_body": {
+                "patient_resource_key1": "value1",
+                "patient_resource_keyn": "valuen"
+            }
+        },
+        {
+            "name": "Search Patient resource",
+            "method": "GET",
+            "url": "{fhir_server}/Patient?{q1}={v1}&{q2}={v2}",
+            "description": "Search FHIR Patient resource by given query conditions. The query conditions are given by one or more url query parameters. The names of query paramters include all properties defined in the Patient resource (Patient.json), including 'given' (given name), 'family' (family name), 'name' (not full name, part of given name, middle name, or family name), 'birthdate' (e.g., 1940-03-08), 'address', 'gender', 'phone', 'email', etc. The placeholder {q1} and {v1}, {q2} and {v2} should be replaced by query parameters and relevant values, respectively. The response is a json file containing a list of Patient resource data if there are patients satisfying the query conditions. ",
+            "headers": {
+                "accept": "application/fhir+json"
+            },
+            "response_body": {
+                "total": 2,
+                "entry": [
+                    {
+                        "patient_resource_key1": "value1",
+                        "patient_resource_keyn": "valuen"
+                    },
+                    {
+                        "patient_resource_key1": "value1",
+                        "patient_resource_keyn": "valuen"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Update Patient resource",
+            "method": "PUT",
+            "url": "{fhir_server}/Patient/{id}",
+            "description": "Update patient resource by patient ID. Specifically, the placeholder {id} should be replaced by patient ID. And the updated patient resource data is provided as request body in json format. The 'id' property with the same value as the placeholder {id} must be presented in the json. A specific example of Patient resource is illustrated in Patient.json. The response body is the json representing the updated Patient resource, if the updating is successful.",
+            "request_body": {
+                "patient_resource_key1": "value1",
+                "patient_resource_keyn": "valuen"
+            },
+            "response_body": {
+                "patient_resource_key1": "value1",
+                "patient_resource_keyn": "valuen"
+            }
+        },
+        {
+            "name": "Read MedicationRequest resource",
+            "method": "GET",
+            "url": "{fhir_server}/MedicationRequest/{id}",
+            "description": "Read FHIR MedicationRequest resource by id. The placeholder {id} should be replaced by MedicationRequest ID (e.g., 763997). The response is a json file containing the MedicationRequest resource data if it exists.  ",
+            "headers": {
+                "accept": "application/fhir+json"
+            },
+            "response_body": {
+                "medicationrequest_resource_key1": "value1",
+                "medicationrequest_resource_keyn": "valuen"
+            }
+        },
+        {
+            "name": "Search MedicationRequest resource",
+            "method": "GET",
+            "url": "{fhir_server}/MedicationRequest?{q1}={v1}&{q2}={v2}",
+            "description": "Search FHIR MedicationRequest resource by given query conditions. The query conditions are given by one or more url query parameters. The names of query paramters include 'subject' (The id of a patient to list orders for, e.g., S6426560), 'authoredon' (prescriptions written on this date, e.g., 2023-08-15), 'status' (status of the prescription, e.g, active), 'intent' (the intent of the prescription, e.g., order), etc. The placeholder {q1} and {v1}, {q2} and {v2} should be replaced by query parameters and relevant values, respectively. The response is a json file containing a list of MedicationRequest resource data if there are MedicationRequest satisfying the query conditions. ",
+            "headers": {
+                "accept": "application/fhir+json"
+            },
+            "response_body": {
+                "total": 2,
+                "entry": [
+                    {
+                        "medicationrequest_resource_key1": "value1",
+                        "medicationrequest_resource_keyn": "valuen"
+                    },
+                    {
+                        "medicationrequest_resource_key1": "value1",
+                        "medicationrequest_resource_keyn": "valuen"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Update MedicationRequest resource",
+            "method": "PUT",
+            "url": "{fhir_server}/MedicationRequest/{id}",
+            "description": "Update patient resource by MedicationRequest ID. Specifically, the placeholder {id} should be replaced by MedicationRequest ID. And the updated MedicationRequest resource data is provided as request body in json format. The 'id' property with the same value as the placeholder {id} must be presented in the json. A specific example of MedicationRequest resource is illustrated in MedicationRequest.json. The response body is the json representing the updated MedicationRequest resource, if the updating is successful.",
+            "request_body": {
+                "medicationrequest_resource_key1": "value1",
+                "medicationrequest_resource_keyn": "valuen"
+            },
+            "response_body": {
+                "medicationrequest_resource_key1": "value1",
+                "medicationrequest_resource_keyn": "valuen"
+            }
+        },
+        {
+            "name": "Read Observation resource",
+            "method": "GET",
+            "url": "{fhir_server}/Observation/{id}",
+            "description": "Read FHIR Observation resource by id. The placeholder {id} should be replaced by Observation ID (e.g., 75557). The response is a json file containing the Observation resource data if it exists.  ",
+            "headers": {
+                "accept": "application/fhir+json"
+            },
+            "response_body": {
+                "observation_resource_key1": "value1",
+                "observation_resource_keyn": "valuen"
+            }
+        },
+        {
+            "name": "Search Observation resource",
+            "method": "GET",
+            "url": "{fhir_server}/Observation?{q1}={v1}&{q2}={v2}",
+            "description": "Search FHIR Observation resource by given query conditions. The query conditions are given by one or more url query parameters. The names of query parameters include 'subject' (The id of a patient the observation is about, e.g., S6426560), 'date' (the observation was issued/effective on this date, e.g., 2023-01-10), 'code' (code of the observation type, e.g., QTINTERVAL), 'status' (status of the observation, e.g, final), 'cateogry' (the classification of the type of observation), 'valueQuantity' (The value of the observation), etc. The placeholder {q1} and {v1}, {q2} and {v2} should be replaced by query parameters and relevant values, respectively. The response is a json file containing a list of Observation resource data if there are Observation satisfying the query conditions. ",
+            "headers": {
+                "accept": "application/fhir+json"
+            },
+            "response_body": {
+                "total": 2,
+                "entry": [
+                    {
+                        "observation_resource_key1": "value1",
+                        "observation_resource_keyn": "valuen"
+                    },
+                    {
+                        "observation_resource_key1": "value1",
+                        "observation_resource_keyn": "valuen"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Update Observation resource",
+            "method": "PUT",
+            "url": "{fhir_server}/Observation/{id}",
+            "description": "Update Observation resource by Observation ID. Specifically, the placeholder {id} should be replaced by Observation ID. And the update Observation resource data is provided as request body in json format. The 'id' property with the same value as the placeholder {id} must be presented in the json. A specific example of Observation resource is illustrated in Observation.json. The response body is the json representing the updated Observation resource, if the updating is successful.",
+            "request_body": {
+                "observation_resource_key1": "value1",
+                "observation_resource_keyn": "valuen"
+            },
+            "response_body": {
+                "observation_resource_key1": "value1",
+                "observation_resource_keyn": "valuen"
+            }
+        },
+        {
+            "name": "Read Condition resource",
+            "method": "GET",
+            "url": "{fhir_server}/Condition/{id}",
+            "description": "Read FHIR Condition resource by id. The placeholder {id} should be replaced by Condition ID (e.g., 700). The response is a json file containing the Condition resource data if it exists.  ",
+            "headers": {
+                "accept": "application/fhir+json"
+            },
+            "response_body": {
+                "condition_resource_key1": "value1",
+                "condition_resource_keyn": "valuen"
+            }
+        },
+        {
+            "name": "Search Condition resource",
+            "method": "GET",
+            "url": "{fhir_server}/Condition?{q1}={v1}&{q2}={v2}",
+            "description": "Search FHIR Condition resource by given query conditions. The query conditions are given by one or more url query parameters. The names of query parameters include 'subject' (The id of a patient having the condition, e.g., S6426560), 'onset-date' (the condition began on this date, e.g., 2023-01-10), 'code' (code for the condition, e.g, I50.22), etc. The placeholder {q1} and {v1}, {q2} and {v2} should be replaced by query parameters and relevant values, respectively. The response is a json file containing a list of Condition resource data if there are Condition satisfying the query conditions. ",
+            "headers": {
+                "accept": "application/fhir+json"
+            },
+            "response_body": {
+                "total": 2,
+                "entry": [
+                    {
+                        "condition_resource_key1": "value1",
+                        "condition_resource_keyn": "valuen"
+                    },
+                    {
+                        "condition_resource_key1": "value1",
+                        "condition_resource_keyn": "valuen"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Update Condition resource",
+            "method": "PUT",
+            "url": "{fhir_server}/Condition/{id}",
+            "description": "Update Condition resource by Condition ID. Specifically, the placeholder {id} should be replaced by Condition ID. And the updated Condition resource data is provided as request body in json format. The 'id' property with the same value as the placeholder {id} must be presented in the json. A specific example of Condition resource is illustrated in Condition.json. The response body is the json representing the updated Condition resource, if the updating is successful.",
+            "request_body": {
+                "condition_resource_key1": "value1",
+                "condition_resource_keyn": "valuen"
+            },
+            "response_body": {
+                "condition_resource_key1": "value1",
+                "condition_resource_keyn": "valuen"
+            }
+        },
+        {
+            "name": "Read Procedure resource",
+            "method": "GET",
+            "url": "{fhir_server}/Procedure/{id}",
+            "description": "Read FHIR Procedure resource by id. The placeholder {id} should be replaced by Procedure ID (e.g., 639033). The response is a json file containing the Condition resource data if it exists.  ",
+            "headers": {
+                "accept": "application/fhir+json"
+            },
+            "response_body": {
+                "condition_resource_key1": "value1",
+                "condition_resource_keyn": "valuen"
+            }
+        },
+        {
+            "name": "Search Procedure resource",
+            "method": "GET",
+            "url": "{fhir_server}/Procedure?{q1}={v1}&{q2}={v2}",
+            "description": "Search FHIR Procedure resource by given query conditions. The query conditions are given by one or more url query parameters. The names of query parameters include 'subject' (The id of the patient of the procedure, e.g., S6426560), 'date' (when the procedure was performed, e.g., 2023-01-10), 'code' (code for the procedure, e.g, LABHBSQT), etc. The placeholder {q1} and {v1}, {q2} and {v2} should be replaced by query parameters and relevant values, respectively. The response is a json file containing a list of Procedure resource data if there are Procedure resource data satisfying the query conditions. ",
+            "headers": {
+                "accept": "application/fhir+json"
+            },
+            "response_body": {
+                "total": 2,
+                "entry": [
+                    {
+                        "procedure_resource_key1": "value1",
+                        "procedure_resource_keyn": "valuen"
+                    },
+                    {
+                        "procedure_resource_key1": "value1",
+                        "procedure_resource_keyn": "valuen"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Update Procedure resource",
+            "method": "PUT",
+            "url": "{fhir_server}/Procedure/{id}",
+            "description": "Update Procedure resource by Procedure ID. Specifically, the placeholder {id} should be replaced by Procedure ID. And the updated Procedure resource data is provided as request body in json format. The 'id' property with the same value as the placeholder {id} must be presented in the json. A specific example of Procedure resource is illustrated in Procedure.json. The response body is the json representing the updated Procedure resource, if the updating is successful.",
+            "request_body": {
+                "procedure_resource_key1": "value1",
+                "procedure_resource_keyn": "valuen"
+            },
+            "response_body": {
+                "procedure_resource_key1": "value1",
+                "procedure_resource_keyn": "valuen"
+            }
+        },
+    ]
+}

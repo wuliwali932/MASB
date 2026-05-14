@@ -1,0 +1,121 @@
+{
+    "_comment1": "The file describes HTTP API endpoints of SMART on FHIR server that do login to obtain short-lived access token and wrap HTTP APIs accessing FHIR resouce on another FHIR server. Specifically, a user first logins with credentials to obtain a short-lived bearer access token. Then it can call following endpoints with the bearer access token in HTTP request header",
+
+   
+    "_comment3": "There are some predefined users with credentials provided in file 'predifined_users.json'. Each user has a role. There are three roles: patient, physician, and administrator. An appropriate role and a random user with the role should be selected to login according to the question relevant to the FHIR resources.",
+
+    "_comment3": "These APIs generally act as wrappers to forward HTTP request to access FHIR resource on another server (i.e., the FHIR server). The HTTP API call contains a request parameter (i.e. fhir_api_request) that is a url request to the FHIR server. For exmaple, the url, http://127.0.0.1:8000/patient/read?fhir_api_request=<urlencode(http://127.0.0.1:8082/fhir/Patient/S6426560)>, requests Patient (with ID S6426560) FHIR resource on the FHIR server http://127.0.0.1:8082 under the patient role. The instructions of HTTP APIs to access FHIRE resources on the FHIR server are instroduced in 'funcs_fhir_resources_server_v1.json'.",
+
+    "_comment4": "These HTTP APIs follow RESTful principles. For example, GET method is used to retrieve data from server. POST method is used to send data (json payload) to the server to create a resource. PUT method is used send data (json payload) to the server to udpate an existing resource.",
+   
+     "_comment5": "The placeholder in following {smart_on_fhir_server} should be replaced by 'http://127.0.0.1:8000'.",
+
+    "endpoints": [
+        {
+            "name": "Login",
+            "method": "POST",
+            "url": "{smart_on_fhir_server}/login",
+            "description": "Authenticate with username and password and obtain an access token. The response has following json format {'access_token':<token>, 'token_type':'bearer', 'expires_in': 3600, 'role':<role_type>}. The role_type should be one of patient, physician, and administrator.",
+            "request_body": {
+                "username": "string",
+                "password": "string"
+            },
+            "response_body": {
+                "access_token": "string",
+                "token_type": "bearer",
+                "expires_in": 3600,
+                "role": "role type"
+            }
+        },
+        {
+            "name": "Retrieve FHIR resource data using the patient role",
+            "method": "GET",
+            "url": "{smart_on_fhir_server}/patient/read?fhir_api_request={fhir_server_url}",
+            "description": "Retrieve data using the patient role. This is a wrapper to APIs on FHIR server that are used to read FHIR resources (by method GET). The query parameter fhir_api_request represents the request url to accessing FHIR resource on the FHIR server. For example, the placeholder {fhir_server_url} could be replaced by 'http://127.0.0.1:8082/fhir/Patient/S6426560'. The instructions of HTTP APIs on the FHIR server are instroduced in 'funcs_fhir_resources_server_v1.json'. The response body is a json containing FHIR resources like Patient, MedicationRequest, Condition, Procedure, and Observaton. The specific format of json of FHIR resources are illustrated  with examples in Condition.json, MedicationRequest.json, Observation.json, Patient.json, and Procedure.json. ",
+            "headers": {
+                "Authorization": "Bearer <access_token>"
+            },
+            "response_body": {
+                "fhir_resource_key1": "value1",
+                "fhir_resource_keyn": "valuen"
+            }
+        },
+        {
+            "name": "Update FHIR resource data using the patient role",
+            "method": "PUT",
+            "url": "{smart_on_fhir_server}/patient/update?fhir_api_request={fhir_server_url}",
+            "description": "Updating data using the patient role. This is a wrapper to APIs on FHIR serve that are used to update FHIR resources by method PUT. Both the request body and response body are json files containing FHIR resources like Patient, MedicationRequest, Condition, Procedure, and Observaton. The instructions of HTTP APIs on the FHIR server are instroduced in 'funcs_fhir_resources_server_v1.json'. Both request and response body are json files containing FHIR resources like Patient, MedicationRequest, Condition, Procedure, and Observaton. The specific format of json of FHIR resources are illustrated  with examples in Condition.json, MedicationRequest.json, Observation.json, Patient.json, and Procedure.json.",
+            "headers": {
+                "Authorization": "Bearer <access_token>"
+            },
+            "request_body": {
+                "key1": "value1",
+                "keyn": "valuen"
+            },
+            "response_body": {
+                "key1": "value1",
+                "keyn": "valuen"
+            }
+        },
+        {
+            "name": "Retrieve FHIR resource data using the physician role",
+            "method": "GET",
+            "url": "{smart_on_fhir_server}/physician/read?fhir_api_request={fhir_server_url}",
+            "description": "Retrieve data using the patient role. This is a wrapper to APIs on FHIR server that are used to read FHIR resources (by method GET). The query parameter fhir_api_request represents the request url to accessing FHIR resource on the FHIR server. For example, the placeholder {fhir_server_url} could be replaced by 'http://127.0.0.1:8082/fhir/Patient/S6426560'. The instructions of HTTP APIs on the FHIR server are instroduced in 'funcs_fhir_resources_server_v1.json'. The response body is a json containing FHIR resources like Patient, MedicationRequest, Condition, Procedure, and Observaton. The specific format of json of FHIR resources are illustrated  with examples in Condition.json, MedicationRequest.json, Observation.json, Patient.json, and Procedure.json. ",
+            "headers": {
+                "Authorization": "Bearer <access_token>"
+            },
+            "response_body": {
+                "fhir_resource_key1": "value1",
+                "fhir_resource_keyn": "valuen"
+            }
+        },
+        {
+            "name": "Update FHIR resource data using the physician role",
+            "method": "PUT",
+            "url": "{smart_on_fhir_server}/physician/update?fhir_api_request={fhir_server_url}",
+            "description": "Updating data using the patient role. This is a wrapper to APIs on FHIR serve that are used to update FHIR resources by method PUT. Both the request body and response body are json files containing FHIR resources like Patient, MedicationRequest, Condition, Procedure, and Observaton. The instructions of HTTP APIs on the FHIR server are instroduced in 'funcs_fhir_resources_server_v1.json'. Both request and response body are json files containing FHIR resources like Patient, MedicationRequest, Condition, Procedure, and Observaton. The specific format of json of FHIR resources are illustrated  with examples in Condition.json, MedicationRequest.json, Observation.json, Patient.json, and Procedure.json.",
+            "headers": {
+                "Authorization": "Bearer <access_token>"
+            },
+            "request_body": {
+                "key1": "value1",
+                "keyn": "valuen"
+            },
+            "response_body": {
+                "key1": "value1",
+                "keyn": "valuen"
+            }
+        },
+        {
+            "name": "Retrieve FHIR resource data using the administrator role",
+            "method": "GET",
+            "url": "{smart_on_fhir_server}/admin/read?fhir_api_request={fhir_server_url}",
+            "description": "Retrieve data using the administrator role. This is a wrapper to APIs on FHIR server that are used to read FHIR resources (by method GET). The query parameter fhir_api_request represents the request url to accessing FHIR resource on the FHIR server. For example, the placeholder {fhir_server_url} could be replaced by 'http://127.0.0.1:8082/fhir/Patient/S6426560'. The instructions of HTTP APIs on the FHIR server are instroduced in 'funcs_fhir_resources_server_v1.json'. The response body is a json containing FHIR resources like Patient, MedicationRequest, Condition, Procedure, and Observaton. The specific format of json of FHIR resources are illustrated  with examples in Condition.json, MedicationRequest.json, Observation.json, Patient.json, and Procedure.json. ",
+            "headers": {
+                "Authorization": "Bearer <access_token>"
+            },
+            "response_body": {
+                "fhir_resource_key1": "value1",
+                "fhir_resource_keyn": "valuen"
+            }
+        },
+        {
+            "name": "Update FHIR resource data using the administrator role",
+            "method": "PUT",
+            "url": "{smart_on_fhir_server}/admin/update?fhir_api_request={url}",
+            "description": "Updating data using the administrator role. This is a wrapper to APIs on FHIR serve that are used to update FHIR resources by method PUT. Both the request body and response body are json files containing FHIR resources like Patient, MedicationRequest, Condition, Procedure, and Observaton. The instructions of HTTP APIs on the FHIR server are instroduced in 'funcs_fhir_resources_server_v1.json'. Both request and response body are json files containing FHIR resources like Patient, MedicationRequest, Condition, Procedure, and Observaton. The specific format of json of FHIR resources are illustrated  with examples in Condition.json, MedicationRequest.json, Observation.json, Patient.json, and Procedure.json.",
+            "headers": {
+                "Authorization": "Bearer <access_token>"
+            },
+            "request_body": {
+                "key1": "value1",
+                "keyn": "valuen"
+            },
+            "response_body": {
+                "key1": "value1",
+                "keyn": "valuen"
+            }
+        }
+    ]
+}
