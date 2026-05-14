@@ -1,0 +1,43 @@
+{
+    "_comment1": "The file describes HTTP API endpoints of login and privilege management for medical LLM agents obtain access to EHR data. Specifically, the medical LLM agent acts like a SMART app, and it visits authorization server to obtain authorization code, and then trades code for an access token. Finally, it uses the access token to access EHR data on FHIR server. References: https://hl7.org/fhir/smart-app-launch/app-launch.html",
+    "_comment2": "The {authorization_server} placeholder should be replaced with the actual authorization server URL when implementing the API calls.",
+    "_comment3": "There are generally four steps for the medical LLM agent to access EHR data: 1) Register the app with the authorization server to obtain client ID and secret. 2) Direct user to authorization endpoint to obtain authorization code. 3) Exchange authorization code for access token at token endpoint. 4) Use access token to call FHIR API endpoints to retrieve EHR data.",
+    "_comment3a": "The registeration step is not included in this file, as it is a one-time setup process done manually.",
+    "_comment3b": "The authorization code step is also not included in this file, as it involves user interaction through a web browser to grant permissions.",
+    "_comment3c": "This file focuses on the simulation of RESTful APIs of logging in to obtain an access token and retrieving user privileges using that token.",
+    "_comment4": "authorization_server is http://127.0.0.1:8011/",
+    "endpoints": [
+        {
+            "name": "Login",
+            "method": "POST",
+            "url": "{authorization_server}/login",
+            "description": "Authenticate user and obtain access token",
+            "request_body": {
+                "username": "string",
+                "password": "string"
+            },
+            "response_body": {
+                "access_token": "string",
+                "token_type": "Bearer"
+            }
+        },
+        {
+            "name": "Get User Privileges",
+            "method": "GET",
+            "url": "{authorization_server}/privileges",
+            "description": "Retrieve the privileges of the authenticated user",
+            "headers": {
+                "Authorization": "Bearer <access_token>"
+            },
+            "response_body": {
+                "user_id": "string",
+                "privileges": [
+                    {
+                        "resource_type": "string",
+                        "access_level": "string"
+                    }
+                ]
+            }
+        }
+    ]
+}

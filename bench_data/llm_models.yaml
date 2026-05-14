@@ -1,0 +1,75 @@
+
+#openai_api_key: "key"
+gpt-5:
+    model: "gpt-5-2025-08-07"
+gpt-5-mini:
+    model: "gpt-5-mini"
+
+gpt-4o-mini:
+    model: "gpt-4o-mini"
+    
+gpt-4o:
+    model: "gpt-4o-2024-11-20" # thinking (reasoning) is enabled through CoT prompting: Think step by step before providing the final answer.
+    
+google_api_key: "key"
+
+gemini-3-pro-preview:
+    model: "gemini-3-pro-preview"
+gemini-2.5-flash:
+    model: "gemini-2.5-flash"
+gemini-2.5-pro:
+    model: "gemini-2.5-pro" # support thinking mode by config.thinking_config
+        
+anthropic_api_key: "key"
+
+claude-sonnet4.5:
+    model: "claude-sonnet-4-5-20250929"
+claude-haiku-4.5:
+    model: "claude-haiku-4-5-20251001"
+claude-opus-4.1:
+    model: "claude-opus-4-5-20251101" # support thinking mode by thinking parameter
+
+
+together_api_key: "key"
+
+Llama-4-Scout-17B-16E:
+    model: "meta-llama/Llama-4-Scout-17B-16E"
+Llama-4-Scout-17B-16E-Instruct:
+    model: "meta-llama/Llama-4-Scout-17B-16E-Instruct"
+
+Llama-Guard-4-12B:
+    model: "meta-llama/Llama-Guard-4-12B"
+    
+Llama-3.3-70B-Instruct-Turbo:
+    model: "meta-llama/Llama-3.3-70B-Instruct-Turbo"
+Llama-3.1-70B-Instruct-Turbo:
+    model: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo"
+llama-3.1-70B:
+    model: "meta-llama/Meta-Llama-3.1-70B"
+
+
+deepseekv3.1:
+    model: "deepseek-ai/DeepSeek-V3.1" # support thinking and instruct mode
+
+
+qwen3-next-80b-a3b-instruct:
+    model: "Qwen/Qwen3-Next-80B-A3B-Instruct"
+qwen3-next-80b-a3b-thinking:
+    model: "Qwen/Qwen3-Next-80B-A3B-Thinking"
+
+gemma3n-e4b-instruct:
+    model: "google/gemma-3n-E4B-it"
+
+
+
+Mixtral-8x7B:
+    model: "mistralai/Mixtral-8x7B-v0.1"
+Mixtral-8x22B-Instruct:
+    model: "mistralai/Mixtral-8x22B-Instruct-v0.1"
+
+kimi-k2-instruct:
+    model: "moonshotai/Kimi-K2-Instruct-0905"
+kimi-k2-thinking:
+    model: "moonshotai/Kimi-K2-Thinking"
+
+
